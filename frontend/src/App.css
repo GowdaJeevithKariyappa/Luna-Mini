@@ -1,0 +1,224 @@
+/* 🌌 RESET (removes default browser spacing issues) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* makes layout predictable */
+}
+
+body {
+  font-family: "Segoe UI", sans-serif; /* clean modern font */
+  overflow: hidden; /* prevents unwanted outer scroll */
+}
+
+/* 🌙 MAIN APP CONTAINER */
+.app {
+  height: 100vh; /* full screen */
+  width: 100%;
+  color: white;
+
+  display: flex;
+  flex-direction: column; /* vertical layout */
+  justify-content: space-between;
+}
+
+/* 🌈 BACKGROUND (animated gradient) */
+.gradient-bg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  /* radial gradient gives depth */
+  background: radial-gradient(circle at 20% 20%, #7c3aed, #020617);
+
+  z-index: -2; /* behind everything */
+
+  animation: bgMove 20s ease-in-out infinite;
+}
+
+/* background animation */
+@keyframes bgMove {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* 🌙 HEADER */
+.header {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.header h2 {
+  font-weight: 500;
+  letter-spacing: 1px;
+  opacity: 0.9;
+}
+
+/* 🔮 ORB (animated glowing circle) */
+.orb {
+  width: 90px;
+  height: 90px;
+  margin: 15px auto;
+  border-radius: 50%;
+
+  background: radial-gradient(circle, #c084fc, #60a5fa, #f472b6);
+
+  filter: blur(10px);
+
+  /* floating + glow animation */
+  animation: float 6s ease-in-out infinite,
+             glowPulse 4s ease-in-out infinite;
+}
+
+/* floating motion */
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* glow animation */
+@keyframes glowPulse {
+  0%,100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* 💬 CHAT AREA */
+.chat-container {
+  flex: 1; /* takes remaining space */
+  overflow-y: auto; /* scrollable */
+
+  padding: 20px;
+
+  /* 🔥 IMPORTANT FIX:
+     prevents messages from hiding behind input bar */
+  padding-bottom: 120px;
+
+  display: flex;
+  flex-direction: column;
+
+  scroll-behavior: smooth; /* smooth scroll */
+}
+
+/* 💬 CHAT BUBBLES */
+.chat-bubble {
+  max-width: 65%;
+  padding: 14px 18px;
+  border-radius: 18px;
+  margin: 8px 0;
+
+  backdrop-filter: blur(14px); /* glass effect */
+
+  animation: fadeIn 0.5s ease;
+  line-height: 1.5;
+}
+
+/* 🤖 AI MESSAGE */
+.ai {
+  align-self: flex-start; /* left */
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* 👤 USER MESSAGE */
+.user {
+  align-self: flex-end; /* right */
+  background: rgba(167, 139, 250, 0.25);
+}
+
+/* ✨ FADE-IN */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ✍️ INPUT CONTAINER (floating bar) */
+.input-container {
+  position: fixed; /* fixed at bottom */
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 80%;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px;
+
+  border-radius: 30px;
+
+  backdrop-filter: blur(16px); /* glass UI */
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+
+  z-index: 10; /* 🔥 ensures it's above chat */
+}
+
+/* INPUT FIELD */
+.input-container input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 20px;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+  color: white;
+  font-size: 14px;
+}
+
+/* placeholder */
+.input-container input::placeholder {
+  color: rgba(255,255,255,0.6);
+}
+
+/* 🌙 SEND BUTTON */
+.input-container button {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+
+  border: none;
+
+  background: linear-gradient(135deg, #a78bfa, #60a5fa);
+
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+/* hover effect */
+.input-container button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(167,139,250,0.6);
+}
+
+/* 🌟 SCROLLBAR */
+.chat-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-container::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px;
+}
+
+/* 📱 RESPONSIVE */
+@media (max-width: 768px) {
+  .chat-bubble {
+    max-width: 85%;
+  }
+
+  .input-container {
+    width: 95%;
+  }
+}
