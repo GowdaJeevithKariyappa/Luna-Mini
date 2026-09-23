@@ -34,6 +34,6 @@ exports.getAIResponse = async (req, res) => {
     res.json({ reply: response.text });
   } catch (err) {
     console.log("Gemini API error: ", err.message);
-    res.json({ reply: "I'm here for you! 🌙" });
+    res.json({ reply: `Error from Gemini: ${err.message}` });
   }
 };
