@@ -18,9 +18,6 @@ function App() {
   // 🧠 STATE: loading indicator (AI thinking)
   const [loading, setLoading] = useState(false);
 
-  // 🧠 STATE: typing animation (latest AI response)
-  const [typingText, setTypingText] = useState("");
-
   // 📌 Reference for auto-scroll
   const chatRef = useRef(null);
 
@@ -43,7 +40,6 @@ function App() {
     // Reset input and set loading
     setText("");
     setLoading(true);
-    setTypingText("");
 
     try {
       // Send message to backend API
@@ -63,9 +59,6 @@ function App() {
       // ✨ TYPEWRITER EFFECT
       const interval = setInterval(() => {
         i++;
-
-        // Update typing text
-        setTypingText(fullReply.substring(0, i));
 
         // Update last message dynamically
         setMessages((prev) => {
