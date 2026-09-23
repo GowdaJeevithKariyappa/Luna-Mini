@@ -27,7 +27,7 @@ exports.getAIResponse = async (req, res) => {
     const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
     
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3.6-flash',
       contents: `You are Luna, a calm and empathetic AI designed to provide emotional support. The user feels: "${req.body.text}". Give a short, positive, uplifting message. Keep it to 1 or 2 sentences maximum.`,
     });
 
