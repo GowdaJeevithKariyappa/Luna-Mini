@@ -100,64 +100,69 @@ body {
 
 /* 💬 CHAT BUBBLES */
 .chat-bubble {
-  max-width: 65%;
-  padding: 14px 18px;
-  border-radius: 18px;
-  margin: 8px 0;
-
-  backdrop-filter: blur(14px); /* glass effect */
-
-  animation: fadeIn 0.5s ease;
-  line-height: 1.5;
+  max-width: 75%;
+  padding: 16px 20px;
+  border-radius: 24px;
+  margin: 10px 0;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  line-height: 1.6;
 }
 
 /* 🤖 AI MESSAGE */
 .ai {
-  align-self: flex-start; /* left */
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255,255,255,0.1);
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-bottom-left-radius: 6px;
 }
 
 /* 👤 USER MESSAGE */
 .user {
-  align-self: flex-end; /* right */
-  background: rgba(167, 139, 250, 0.25);
+  align-self: flex-end;
+  background: linear-gradient(135deg, rgba(167, 139, 250, 0.35), rgba(96, 165, 250, 0.35));
+  border: 1px solid rgba(167, 139, 250, 0.3);
+  border-bottom-right-radius: 6px;
 }
 
-/* ✨ FADE-IN */
-@keyframes fadeIn {
+/* ✨ POP-IN ANIMATION */
+@keyframes popIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(15px) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 /* ✍️ INPUT CONTAINER (floating bar) */
 .input-container {
-  position: fixed; /* fixed at bottom */
-  bottom: 20px;
+  position: fixed;
+  bottom: 25px;
   left: 50%;
   transform: translateX(-50%);
 
-  width: 80%;
-
+  width: 85%;
+  max-width: 800px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 35px;
 
-  padding: 10px;
-
-  border-radius: 30px;
-
-  backdrop-filter: blur(16px); /* glass UI */
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-
-  z-index: 10; /* 🔥 ensures it's above chat */
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  background: rgba(20, 20, 30, 0.4);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  z-index: 10;
 }
 
 /* INPUT FIELD */
