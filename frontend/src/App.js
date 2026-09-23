@@ -47,7 +47,8 @@ function App() {
 
     try {
       // Send message to backend API
-      const res = await axios.post("http://localhost:5000/api/ai", {
+      const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+      const res = await axios.post(`${API_URL}/api/ai`, {
         text,
       });
 

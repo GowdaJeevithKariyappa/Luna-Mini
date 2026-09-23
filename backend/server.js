@@ -25,15 +25,11 @@ app.use(express.json());
 
 // 🧠 DATABASE CONNECTION (MongoDB)
 
-// Connect to local MongoDB database named "luna"
-mongoose.connect("mongodb://127.0.0.1:27017/luna")
-
-  // If connection successful
+// Connect to MongoDB using env variable or fallback to local
+const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/luna";
+mongoose.connect(MONGO_URI, { serverSelectionTimeoutMS: 3000 })
   .then(() => console.log("MongoDB Connected"))
-
-  // If error occurs
-  .catch(err => console.log(err));
-
+  .catch(err => console.log("MongoDB not running. The app will still work, but moods won't be saved."));
 
 // 🔗 ROUTES
 
@@ -49,7 +45,8 @@ app.get("/", (req, res) => {
 
 // 🚀 START SERVER
 
-// Server listens on port 5000
-app.listen(5000, () => {
-  console.log("Server running on port 5000");
+// Server listens on environment port or 5000
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });

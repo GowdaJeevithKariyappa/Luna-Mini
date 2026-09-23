@@ -3,12 +3,15 @@ const axios = require("axios");
 
 // Save mood
 exports.saveMood = async (req, res) => {
-  const { text, mood } = req.body;
-
-  const newMood = new Mood({ text, mood });
-  await newMood.save();
-
-  res.json(newMood);
+  try {
+    const { text, mood } = req.body;
+    const newMood = new Mood({ text, mood });
+    await newMood.save();
+    res.json(newMood);
+  } catch (err) {
+    console.log("Could not save mood (MongoDB might not be running).");
+    res.status(500).json({ error: "Could not save mood" });
+  }
 };
 
 // AI response
@@ -22,6 +25,7 @@ exports.getAIResponse = async (req, res) => {
 
     res.json({ reply: response.data.response });
   } catch (err) {
-    res.status(500).json({ error: "AI error" });
+    console.log("Ollama error: ", err.message);
+    res.json({ reply: "I'm here for you! 🌙 (Note: To get real AI responses, please install Ollama and the 'mistral' model on your device, or ensure it is running.)" });
   }
 };
